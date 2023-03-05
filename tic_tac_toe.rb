@@ -11,6 +11,8 @@ class TicTacToe
         @board = Array.new(3) {Array.new(3,"-")}
         display
 
+        @legend = Hash["X": @player1, "O": @player2]
+
     end
 
     def display
@@ -23,20 +25,19 @@ class TicTacToe
 
     def turn
 
-        logo = "X"
-
         #Player 1's Turn
         if @@turn_counter.odd?
             logo = "X"
             puts "\n"
             puts "Player 1's Turn. Enter coordinates: "
             @coordinates = gets.chomp.split(",")
-            if @board[@coordinates[0].to_i][@coordinates[1].to_i] = "-"
+            if @board[@coordinates[0].to_i][@coordinates[1].to_i] === "-"
                 @board[@coordinates[0].to_i][@coordinates[1].to_i] = logo
                 @@turn_counter += 1
                 display
                 turn
             else 
+                puts "\n"
                 puts "This spot is already taken."
                 turn
             end
@@ -54,14 +55,13 @@ class TicTacToe
                 display
                 turn
             else 
+                puts "\n"
                 puts "This spot is already taken."
                 turn
             end
             display
         end
     end
-
-
 
 end
 
